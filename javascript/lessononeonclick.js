@@ -1,4 +1,4 @@
-var reactContainer = document.getElementsByClassName("lessons")
+var reactContainer = document.getElementsByClassName("lessons");
 var icon = document.getElementsByClassName("icon");
 var i;
 let onIconClick = function () {
@@ -13,7 +13,7 @@ let onIconClick = function () {
     content.style.display = "block";
     content.style.maxHeight = content.scrollHeight + "px";
     overlay.style.display = "none";
-  };
+  }
 };
 for (i = 0; i < icon.length; i++) {
   icon[i].addEventListener("click", onIconClick);

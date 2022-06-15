@@ -28,7 +28,7 @@ function toggleCreateAccountLoginForms() {
   });
 }
 
-function storingCreatAccountDetails() {
+function storingCreateAccountDetails() {
   createAccountForm().addEventListener("submit", (event) => {
     event.preventDefault();
     let inputs = document.querySelectorAll("#createAccount input");
@@ -51,32 +51,34 @@ function storingCreatAccountDetails() {
       }
     });
 
-
-       
-        //saves information
-        if (passwordArray[0] === passwordArray[1]){
-
-            fetch('/api/v1/user', {
-                method: 'PUT', 
-                body: JSON.stringify({'username': username, 'email': email, 'password': passwordArray[0]})
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.message == "account created"){
-                    loginForm().classList.remove( hiddenClass)
-                    createAccountForm().classList.add( hiddenClass)
-                }
-                else {
-                    let messageElement = document.querySelector(".create-account-error")
-                    messageElement.textContent = "Failed to create Account. Please Try again."
-                }
-            });
-        }
-        else {
-            let messageElement = document.querySelector(".create-account-error")
-            messageElement.textContent = "Password does not match. Please Try again."
-        }
-    })
+    //saves information
+    if (passwordArray[0] === passwordArray[1]) {
+      fetch("/api/v1/user", {
+        method: "PUT",
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: passwordArray[0],
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message == "account created") {
+            loginForm().classList.remove(hiddenClass);
+            createAccountForm().classList.add(hiddenClass);
+          } else {
+            let messageElement = document.querySelector(
+              ".create-account-error"
+            );
+            messageElement.textContent =
+              "Failed to create Account. Please Try again.";
+          }
+        });
+    } else {
+      let messageElement = document.querySelector(".create-account-error");
+      messageElement.textContent = "Password does not match. Please Try again.";
+    }
+  });
 }
 
 function saveLoginInformation() {
@@ -117,31 +119,32 @@ function saveLoginInformation() {
 }
 
 function formWhileLoggedIn() {
-    if (sessionStorage.length >= 1) {
-        document.getElementById("log-in").innerHTML = "Welcome " + sessionStorage.getItem("access-token") + "!"
-        loginForm().classList.add(hiddenClass);
-        logoutForm().classList.remove(hiddenClass);
-        logoutForm().addEventListener("submit", (e) => {
-            e.preventDefault();
-            sessionStorage.clear();
-            console.log(sessionStorage);
-            loginForm().classList.remove(hiddenClass);
-            logoutForm().classList.add(hiddenClass);
+  if (sessionStorage.length >= 1) {
+    document.getElementById("log-in").innerHTML =
+      "Welcome " + sessionStorage.getItem("access-token") + "!";
+    loginForm().classList.add(hiddenClass);
+    logoutForm().classList.remove(hiddenClass);
+    logoutForm().addEventListener("submit", (e) => {
+      e.preventDefault();
+      sessionStorage.clear();
+      console.log(sessionStorage);
+      loginForm().classList.remove(hiddenClass);
+      logoutForm().classList.add(hiddenClass);
 
-            //clear input values
-            const inputValues = document.querySelectorAll(".form-input");
-            inputValues.forEach((input) => {
-                input.value = "";
-            });
-        });
-    };
-};
+      //clear input values
+      const inputValues = document.querySelectorAll(".form-input");
+      inputValues.forEach((input) => {
+        input.value = "";
+      });
+    });
+  }
+}
 
 let functionArray = [
   toggleCreateAccountLoginForms,
-  storingCreatAccountDetails,
+  storingCreateAccountDetails,
   saveLoginInformation,
-    formWhileLoggedIn,
+  formWhileLoggedIn,
 ];
 
 for (i = 0; i < functionArray.length; i++) {
