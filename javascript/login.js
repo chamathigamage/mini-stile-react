@@ -28,7 +28,7 @@ function toggleCreateAccountLoginForms() {
   });
 }
 
-function storingCreatAccountDetails() {
+function storingCreateAccountDetails() {
   createAccountForm().addEventListener("submit", (event) => {
     event.preventDefault();
     let inputs = document.querySelectorAll("#createAccount input");
@@ -142,7 +142,7 @@ function formWhileLoggedIn() {
 
 let functionArray = [
   toggleCreateAccountLoginForms,
-  storingCreatAccountDetails,
+  storingCreateAccountDetails,
   saveLoginInformation,
   formWhileLoggedIn,
 ];

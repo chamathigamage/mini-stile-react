@@ -139,23 +139,23 @@ class LessonButton extends React.Component {
     localStorage.setItem("lesson", this.props.url);
   }
   render() {
-    // if (sessionStorage.length >= 1) {
-    return (
-      <Link
-        className="goToLesson"
-        onClick={() => this.savingUrl()}
-        to={`/lesson/${this.props.url}`}
-      >
-        go to lesson
-      </Link>
-    );
-    // } else {
-    //   return (
-    //     <Link className="goToLesson" to="/profile">
-    //       go to lesson
-    //     </Link>
-    //   );
-    // }
+    if (sessionStorage.token.length >= 1) {
+      return (
+        <Link
+          className="goToLesson"
+          onClick={() => this.savingUrl()}
+          to={`/lesson/${this.props.url}`}
+        >
+          go to lesson
+        </Link>
+      );
+    } else {
+      return (
+        <Link className="goToLesson" to="/profile">
+          go to lesson
+        </Link>
+      );
+    }
   }
 }
 

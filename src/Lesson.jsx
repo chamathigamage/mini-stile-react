@@ -1,12 +1,8 @@
 import { Lesson } from "./components/renderLesson";
-import "./Library.css";
+import "./Lesson.css";
 
-function Library() {
-  return (
-    <>
-      <Lesson />
-    </>
-  );
+function renderLesson() {
+  return <Lesson />;
 }
 
-export default Library;
+export default renderLesson;

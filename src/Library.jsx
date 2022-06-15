@@ -1,4 +1,4 @@
-import { Lessons } from "./components/rendercards";
+import { Lessons } from "./components/renderCards";
 import "./Library.css";
 
 function Library() {
