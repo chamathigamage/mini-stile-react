@@ -62,7 +62,7 @@ class LogIn extends React.Component {
           onClick={() => this.prepareData()}
           class="input-group"
           id="login-button"
-          type="submit"
+          type="button"
         >
           Continue
         </button>
@@ -175,7 +175,7 @@ class CreateAccount extends React.Component {
           onClick={() => this.prepareData()}
           class="input-group"
           id="create-button"
-          type="submit"
+          type="button"
         >
           Continue
         </button>

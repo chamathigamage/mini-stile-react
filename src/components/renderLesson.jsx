@@ -5,9 +5,16 @@ class LessonContent extends React.Component {
     this.state = {
       top: 0,
       left: 0,
+      height: 0,
+      width: 0,
     };
+    // this.componentRef = React.createRef();
   }
   onBaseClick(e) {
+    // console.log(
+    //   this.componentRef.current,
+    //   this.componentRef.current.clientHeight
+    // );
     if (e.pageY !== this.state.top || e.pageX !== this.state.left)
       this.setState({
         top: e.pageY,
@@ -21,7 +28,8 @@ class LessonContent extends React.Component {
           <h1 id="lesson-title">{this.props.apiResponse.lesson_title}</h1>
           <p id="text-content">{this.props.apiResponse.text_content}</p>
 
-          <onTopPic
+          <OnTopPic
+            // ref={this.componentRef}
             apiResponse={this.props.apiResponse}
             top={this.state.top}
             left={this.state.left}
@@ -42,16 +50,39 @@ class LessonContent extends React.Component {
   }
 }
 
-class onTopPic extends React.Component {
+class OnTopPic extends React.Component {
+  constructor(props) {
+    super(props);
+    this.imgRef = React.createRef();
+    this.state = {
+      width: 0,
+      height: 0,
+    };
+  }
   render() {
     return (
       <img
-        // style={`top = ${this.props.top} - height / 3px; left = ${this.props.left} - width / 2px;`}
+        ref={this.imgRef}
+        style={{
+          top: this.props.top - this.state.height / 3,
+          left: this.props.left - this.state.width / 2,
+        }}
         id="on-top-pic"
         src={this.props.apiResponse.on_top_url}
         alt={this.props.apiResponse.on_top_alt}
       />
     );
+  }
+  componentDidUpdate() {
+    if (
+      this.state.width !== this.imgRef.current.clientWidth ||
+      this.state.height !== this.imgRef.current.clientHeight
+    ) {
+      this.setState({
+        width: this.imgRef.current.clientWidth,
+        height: this.imgRef.current.clientHeight,
+      });
+    }
   }
 }
 
@@ -73,7 +104,7 @@ export class Lesson extends React.Component {
   render() {
     return (
       <div className="react">
-        <LessonContent apiResponse={this.state.apiResponse} />;
+        <LessonContent apiResponse={this.state.apiResponse} />
       </div>
     );
   }
