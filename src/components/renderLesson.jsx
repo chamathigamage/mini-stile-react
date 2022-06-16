@@ -53,7 +53,7 @@ class LessonContent extends React.Component {
 class OnTopPic extends React.Component {
   constructor(props) {
     super(props);
-    this.inputRef = React.createRef();
+    this.imgRef = React.createRef();
     this.state = {
       width: 0,
       height: 0,
@@ -62,7 +62,7 @@ class OnTopPic extends React.Component {
   render() {
     return (
       <img
-        ref={this.inputRef}
+        ref={this.imgRef}
         style={{
           top: this.props.top - this.state.height / 3,
           left: this.props.left - this.state.width / 2,
@@ -75,12 +75,12 @@ class OnTopPic extends React.Component {
   }
   componentDidUpdate() {
     if (
-      this.state.width !== this.inputRef.current.clientWidth ||
-      this.state.height !== this.inputRef.current.clientHeight
+      this.state.width !== this.imgRef.current.clientWidth ||
+      this.state.height !== this.imgRef.current.clientHeight
     ) {
       this.setState({
-        width: this.inputRef.current.clientWidth,
-        height: this.inputRef.current.clientHeight,
+        width: this.imgRef.current.clientWidth,
+        height: this.imgRef.current.clientHeight,
       });
     }
   }
