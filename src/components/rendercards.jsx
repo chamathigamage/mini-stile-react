@@ -139,7 +139,7 @@ class LessonButton extends React.Component {
     localStorage.setItem("lesson", this.props.url);
   }
   render() {
-    if (sessionStorage.token.length >= 1) {
+    if (sessionStorage.token && sessionStorage.token.length >= 1) {
       return (
         <Link
           className="goToLesson"

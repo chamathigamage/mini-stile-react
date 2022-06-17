@@ -8,13 +8,8 @@ class LessonContent extends React.Component {
       height: 0,
       width: 0,
     };
-    // this.componentRef = React.createRef();
   }
   onBaseClick(e) {
-    // console.log(
-    //   this.componentRef.current,
-    //   this.componentRef.current.clientHeight
-    // );
     if (e.pageY !== this.state.top || e.pageX !== this.state.left)
       this.setState({
         top: e.pageY,
