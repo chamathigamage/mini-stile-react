@@ -1,5 +1,5 @@
 import "./Homepage.css";
-
+import homepagePng from "./images/homepage.png";
 function Homepage() {
   return (
     <>

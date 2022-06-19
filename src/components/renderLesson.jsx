@@ -1,12 +1,11 @@
 import React from "react";
+import bowtie from "../images/bowtie.png";
 class LessonContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       top: 0,
       left: 0,
-      height: 0,
-      width: 0,
     };
   }
   onBaseClick(e) {
@@ -24,7 +23,6 @@ class LessonContent extends React.Component {
           <p id="text-content">{this.props.apiResponse.text_content}</p>
 
           <OnTopPic
-            // ref={this.componentRef}
             apiResponse={this.props.apiResponse}
             top={this.state.top}
             left={this.state.left}
@@ -55,6 +53,12 @@ class OnTopPic extends React.Component {
     };
   }
   render() {
+    let imgSrc;
+    if (this.props.apiResponse.on_top_url === "images/bowtie.png") {
+      imgSrc = bowtie;
+    } else {
+      imgSrc = this.props.apiResponse.on_top_url;
+    }
     return (
       <img
         ref={this.imgRef}
@@ -63,7 +67,7 @@ class OnTopPic extends React.Component {
           left: this.props.left - this.state.width / 2,
         }}
         id="on-top-pic"
-        src={this.props.apiResponse.on_top_url}
+        src={imgSrc}
         alt={this.props.apiResponse.on_top_alt}
       />
     );
