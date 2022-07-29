@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS `mini-stile`;
+USE mini-stile;
 CREATE TABLE users (
   user_id INTEGER NOT NULL AUTO_INCREMENT,
   username VARCHAR(255) NOT NULL,
